@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  time: string;
+  location: string;
+  notWeekly?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  time,
+  location,
+  notWeekly,
+}: Props = Astro.props;
+---
+
+<div
+  class="p-5 flex flex-col justify-around rounded-xl shadow-md bg-leaf-600 flex-1 text-center"
+>
+  <p class="uppercase font-bold">{title}</p>
+  <p>{description}</p>
+  <p class="m-3">
+    Every {notWeekly && "other "}<strong>{time}</strong> at <strong
+      >{location}</strong
+    >
+  </p>
+</div>
