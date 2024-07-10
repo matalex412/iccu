@@ -1,15 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EventCard from "../components/EventCard.astro";
+import Section from "../components/Section.astro";
 import { Image } from "astro:assets";
 import groupImage from "../assets/iccu1.jpeg";
+
 ---
 
 <Layout title="Imperial College Christian Union">
-  <div class="bg-leaf-500">
-    <div
-      class="max-w-screen-xl text-lg p-6 w-full flex flex-col gap-3 md:text-2xl md:flex-row md:flex md:items-center md:justify-around mx-auto"
-    >
+  <Section>
       <div class="flex items-center justify-center flex-1">
         <Image
           src={groupImage}
@@ -17,16 +16,12 @@ import groupImage from "../assets/iccu1.jpeg";
           width="500"
         />
       </div>
-      <p class="flex-1 text-center">
+      <p class="flex-1 text-center md:text-3xl">
         We are a community of Christians sharing the good
         news of Jesus Christ at Imperial College!
       </p>
-    </div>
-  </div>
-  <div class="bg-gray-50">
-    <div
-      class="max-w-screen-xl text-lg p-6 w-full flex flex-col gap-3 md:text-2xl md:flex-row md:flex md:justify-around mx-auto md:gap-6"
-    >
+  </Section>
+  <Section lightBackground additionalClass="items-stretch">
       <EventCard
         title="Hub"
         description="Worship, learning and prayer focused on our CU vision. If you're already a Christian, this is the place to start!"
@@ -49,6 +44,5 @@ import groupImage from "../assets/iccu1.jpeg";
         time="Monday 12pm"
         location="tbd"
       />
-    </div>
-  </div>
+  </Section>
 </Layout>
