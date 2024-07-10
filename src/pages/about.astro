@@ -1,0 +1,68 @@
+---
+import ProfileCard from "../components/ProfileCard.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contact Us">
+  <main>
+    <div class="bg-leaf-500">
+      <div
+        class="max-w-screen-xl text-lg p-6 w-full flex flex-col gap-3 md:text-2xl md:flex-row md:flex md:items-center md:justify-around mx-auto"
+      >
+        <p class="text-3xl font-semibold p-3">
+          Giving every student at Imperial the opportunity
+          to hear and respond to the gospel of Jesus Christ.
+        </p>
+        <div class="p-3">
+          <p>
+            From churches across London (and the world), we
+            unite on campus with the vision of spreading the
+            good news of the gospel on campus.
+          </p>
+          <br />
+          <p>
+            We work with and are supported by UCCF. You can
+            check out our <a
+              class="underline hover:text-gray-300"
+              href="https://www.uccf.org.uk/about/doctrinal-basis"
+            >
+              doctrinal basis</a
+            >.
+          </p>
+          <br />
+          <p>
+            We're led by a small committee, but our events
+            are organised and run by all of our members.
+          </p>
+        </div>
+      </div>
+      <div class="bg-leaf-50">
+        <div
+          class="flex-wrap max-w-screen-xl text-md p-6 w-full flex gap-3 gap-y-5 items-stretch justify-around mx-auto"
+        >
+          <ProfileCard
+            picture=""
+            name="Edmund Nogueiro"
+            role="UCCF Staff Worker"
+            verse="Romans 5:8"
+            bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision of giving every student the opportunity to hear and respond to the Gospel of Jesus! I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him."
+          />
+          <ProfileCard
+            picture=""
+            name="Edmund Nogueiro"
+            role="UCCF Staff Worker"
+            verse="Romans 5:8"
+            bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision of giving every student the opportunity to hear and respond to the Gospel of Jesus! I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him."
+          />
+          <ProfileCard
+            picture=""
+            name="Edmund Nogueiro"
+            role="UCCF Staff Worker"
+            verse="Romans 5:8"
+            bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision. I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him!"
+          />
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
