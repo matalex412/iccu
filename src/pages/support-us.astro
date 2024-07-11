@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+---
+
+<Layout title="Support Us">
+  <Section>
+    <p class="text-3xl font-semibold">
+      Want to support us?
+    </p>
+	<ol class="pl-2"  style={{ "list-style-type": "decimal" }}>
+		<li>
+			<strong>Pray</strong> - that we would continue to do God's will
+			on campus and that those who hear the good new have
+			soft hearts.
+		</li>
+		<li>
+			<strong>Get involved</strong> - if you're a student and want to help
+			us in our mission come along to Hub or our other
+			events.
+		</li>
+		<li>
+			<strong>Donate</strong> - through your generosity we are able to
+			operate. Any money donated goes directly to funding
+			our mission on campus.
+		</li>
+	</ol>
+  </Section>
+  <Section lightBackground additionalClass="md:flex-row-reverse text-leaf-500">
+	<p class="md:px-20 font-bold text-2xl md:text-5xl">Prayer</p>
+	<p>If you're an alumni or a supporter and want to hear from us each term. Fill out this form and we'll put you on our mailing list.</p>
+  </Section>
+ <Section lightBackground additionalClass="text-leaf-500 pt-0">
+	 <p class="md:px-20 font-bold text-2xl md:text-5xl">Donate</p>
+	 <div>
+
+	 <p>If you're an alumni or a supporter and want to hear from us each term. Fill out this form and we'll put you on our mailing list.We are funded entirely by your donations; giving financially is a great way to take part in our mission.</p>
+	 <br>
+	 <p>We've partnered with Stewardship to make donating quick, easy, and gift-aid friendly. Monthly donations are super helpful when budgeting, or you can send us a one-off gift. Click here to give.</p>
+	 <br>
+	 <p>You can also donate through our Student Union, although we can’t claim gift aid on this.</p>
+	 </div>
+	</Section>
+</Layout>
