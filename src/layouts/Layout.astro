@@ -27,9 +27,13 @@ const { title } = Astro.props;
     />
     <title>{title}</title>
   </head>
-  <body class="box-border text-gray-100 h-screen">
+  <body
+    class="box-border bg-leaf-500 text-gray-100 h-screen"
+  >
     <Header />
-    <slot />
+    <div class="min-h-[calc(100vh-160px)]">
+      <slot />
+    </div>
     <Footer />
   </body>
 </html>
