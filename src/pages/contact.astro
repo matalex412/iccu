@@ -1,9 +1,46 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Section from "../components/Section.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contact Us">
-	<main>
-		<p>Hello</p>
-	</main>
+  <Section additionalClass="justify-around">
+    <p class="font-bold text-3xl md:text-5xl">
+      Contact us!
+    </p>
+    <ul class="flex gap-8 flex-col">
+      <li class="border-b-2 pb-5">
+        <p class="font-semibold text-2xl">Email</p><p>
+          cu@imperial.ac.uk
+        </p>
+      </li>
+      <li class="border-b-2 pb-5">
+        <p class="font-semibold text-2xl">Facebook</p>
+        <p>
+          Our main facebook page: <a
+            class="underline"
+            href="https://www.facebook.com/imperialcu"
+            >https://www.facebook.com/imperialcu</a
+          >
+        </p>
+        <p>
+          Message our facebook page: <a
+            class="underline"
+            href="http://m.me/imperialcu"
+            >http://m.me/imperialcu</a
+          >
+        </p>
+      </li>
+      <li>
+        <p class="font-semibold text-2xl">Instagram</p>
+        <p>
+          Our Instagram: <a
+            class="underline"
+            href="https://www.instagram.com/imperial_cu/"
+            >https://www.instagram.com/imperial_cu/</a
+          >
+        </p>
+      </li>
+    </ul>
+  </Section>
 </Layout>
