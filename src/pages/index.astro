@@ -20,7 +20,7 @@ import MailingForm from "../components/MailingForm.astro";
           href="https://www.imperialcollegeunion.org/activities/a-to-z/christian-union?check_logged_in=1"
           class="hover:bg-leaf-50 hover:text-leaf-500 bg-leaf-300 rounded-3xl px-4 py-2 text-center"
         >
-          Become a member!
+          Join us!
         </a>
       </div>
     </div>
@@ -29,28 +29,42 @@ import MailingForm from "../components/MailingForm.astro";
     lightBackground
     additionalClass="items-stretch flex-wrap"
   >
-    <EventCard
-      title="Hub"
-      description="Worship, learning and prayer focused on our CU vision. If you're already a Christian, this is the place to start!"
-      path=""
-      time="Thursday 6pm"
-      location="RSM G20"
-    />
-    <EventCard
-      title="Skeptical"
-      description="Exploring deep questions through short lunchtime events. Bring your friends!"
-      path=""
-      notWeekly
-      time="Friday 12-1pm"
-      location="Union Meeting Room 1"
-    />
-    <EventCard
-      title="Curious"
-      description="A Bible study open to anyone and everyone, exploring the basics of the Christian faith."
-      path=""
-      time="Monday 12pm"
-      location="tbd"
-    />
+    <p
+      class="font-semibold text-leaf-600 text-3xl self-center"
+    >
+      Our Regular Events
+    </p>
+    <div
+      class="box-border flex flex-wrap gap-5 flex-col md:flex-row items-stretch"
+    >
+      <EventCard
+        title="Hub"
+        description="Worship, learning and prayer focused on our CU vision. If you're already a Christian, this is the place to start!"
+        path=""
+        time="Thursday 6pm"
+        location="RSM G20"
+      />
+      <EventCard
+        title="Skeptical"
+        description="Exploring deep questions through short lunchtime events. Bring your friends!"
+        path=""
+        notWeekly
+        time="Friday 12-1pm"
+        location="Union Meeting Room 1"
+      />
+      <EventCard
+        title="Curious"
+        description="A Bible study open to anyone and everyone, exploring the basics of the Christian faith."
+        path=""
+        time="Monday 12pm"
+        location="tbd"
+      />
+    </div>
+    <a
+      href="/events"
+      class="text-end w-full text-leaf-600 underline hover:text-leaf-800"
+      >More details</a
+    >
   </Section>
   <Section additionalClass="justify-between">
     <MailingForm />
