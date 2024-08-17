@@ -1,0 +1,11 @@
+---
+import MyCalendar from "../components/Calendar";
+import Section from "../components/Section.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Calendar">
+    <Section lightBackground additionalClass="text-leaf-600">
+        <MyCalendar client:only="react" />
+    </Section>
+</Layout>
