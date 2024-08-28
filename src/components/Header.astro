@@ -1,4 +1,16 @@
 ---
+import { app } from "../firebase/server";
+import { getAuth, UserRecord } from "firebase-admin/auth";
+
+const auth = getAuth(app);
+
+const sessionCookie = Astro.cookies.get("__session")?.value;
+let user: UserRecord | null = null
+
+if (sessionCookie) {
+  const decodedCookie = await auth.verifySessionCookie(sessionCookie);
+  user = await auth.getUser(decodedCookie.uid);
+}
 
 ---
 
@@ -7,7 +19,7 @@
     <div
       class="max-w-screen-xl w-full flex flex-wrap items-center justify-between mx-auto p-3"
     >
-      <a class="w-3/5 text-xl font-semibold" href="/">
+      <a class="text-xl font-semibold" href="/">
         Imperial&nbsp;College Christian&nbsp;Union
       </a>
       <button
@@ -74,6 +86,9 @@
               >Support Us</a
             >
           </li>
+          {user && <li><form action="/api/auth/signout">
+            <button type="submit">Sign out</button>
+          </form></li>}
         </ul>
       </div>
     </div>
