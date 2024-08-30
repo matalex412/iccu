@@ -2,10 +2,23 @@
 import MyCalendar from "../components/Calendar";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
+import { app } from "../firebase/server";
+import { getFirestore } from "firebase-admin/firestore";
+import { date } from "astro:schema";
+
+const db = getFirestore(app);
+
+const eventsSnapshot = await db.collection("events").get()
+const events: any[] = []
+eventsSnapshot.forEach((doc) => {
+    const data = doc.data()
+    events.push({title: data.title, start: data.date?.toDate(), end: data.date?.toDate(), allDay: false})
+})
+
 ---
 
 <Layout title="Calendar">
     <Section lightBackground additionalClass="text-leaf-600">
-        <MyCalendar client:only="react" />
+        <MyCalendar events={events} client:only="react" />
     </Section>
 </Layout>
