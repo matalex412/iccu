@@ -23,3 +23,5 @@ pnpm-debug.log*
 # editor settings folder
 .idea/
 .vscode/
+
+other/
