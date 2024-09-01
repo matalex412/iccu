@@ -3,11 +3,78 @@ import MyCalendar from "../components/Calendar";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 import Modal from "../components/Modal.astro";
+
+import { app } from "../firebase/server";
+import { getFirestore } from "firebase-admin/firestore";
+
+const handleSubmit = async () => {
+  const data = await Astro.request.formData();
+  const name = data.get("name");
+  const date = data.get("date")!.toString();
+  const repeats = Math.max(parseInt(data.get("repeat")!.toString()), 1);
+
+  const db = getFirestore(app);
+  for (let i = 0; i < repeats; i++) {
+    const eventDate = new Date(date);
+    eventDate.setDate(eventDate.getDate() + i * 7);
+    await db.collection("events").add({
+      title: name,
+      date: eventDate,
+    });
+  }
+};
 ---
 
 <Layout title="Calendar">
-    <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
-        <MyCalendar client:only="react" />
-        <Modal title="Add Event"/>
-    </Section>
+  <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
+    <MyCalendar client:only="react" />
+    <Modal title="Add Event" onSubmit={handleSubmit}>
+      <>
+        <div class="flex flex-col gap-2 w-full">
+          <label
+            for="name"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Event Name</label
+          >
+          <input
+            type="text"
+            name="name"
+            id="name"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            placeholder="e.g. Curious"
+            required=""
+          />
+        </div>
+        <div class="flex flex-col gap-2 w-full">
+          <label
+            for="date"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Event Date</label
+          >
+          <input
+            type="date"
+            name="date"
+            id="date"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            required=""
+          />
+        </div>
+        <div class="flex flex-col gap-2 w-full">
+          <label
+            for="date"
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >Number of Weeks:</label
+          >
+          <input
+            type="number"
+            name="repeat"
+            id="repeat"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+            placeholder="How many weeks in a row this event will occur"
+            required=""
+          />
+        </div>
+      </>
+    </Modal>
+  </Section>
 </Layout>
