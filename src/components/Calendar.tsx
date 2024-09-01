@@ -1,38 +1,43 @@
-import { Calendar, momentLocalizer } from 'react-big-calendar'
-import moment from 'moment'
-import React from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../styles/calendar.css";
 
-const localizer = momentLocalizer(moment)
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../firebase/client";
 
-// const events = [
-//   {
-//     start: new Date(),
-//     end: new Date(),
-//     title: "Some title",
-//     allDay: true,
-//   }
-// ]
+const localizer = momentLocalizer(moment);
 
-export default function MyCalendar ({ events }: { events: any[] }) {  
-  var date = new Date();
-  date.setDate(date.getDate() - 1);
+export default function MyCalendar() {
+  const [events, setEvents] = useState<any[]>([])
 
-  const fakeEvents = [
-    {
-      start: date,
-      end: date,
-      title: "Sometitle",
-      allDay: true,
-    }
-  ]
+  const getEvents = () => {
+    const unsubscribe = onSnapshot(query(collection(db, "events")), (querySnapshot) => {
+      const events:any[] = [];
+      querySnapshot.forEach((doc) => {
+        try {
+          events.push({
+            title: doc.data().title,
+            start: doc.data().date?.toDate(),
+            end: doc.data().date?.toDate(),
+            allDay: false,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      });
+      setEvents(events);
+    });
+    return unsubscribe
+  };
 
-  console.log('events', events)
-  console.log('fakeEvents', fakeEvents)
-  
-  const isMobile = false
-  const view = isMobile ? 'week' : 'month'
+  useEffect(() => {
+    return getEvents();
+  }, []);
+
+  const isMobile = false;
+  const view = isMobile ? "week" : "month";
   return (
     <Calendar
       localizer={localizer}
@@ -44,5 +49,5 @@ export default function MyCalendar ({ events }: { events: any[] }) {
       view={view}
       events={events}
     />
-  )
+  );
 }
