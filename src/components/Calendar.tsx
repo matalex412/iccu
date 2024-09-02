@@ -1,20 +1,26 @@
-import { Calendar, momentLocalizer } from "react-big-calendar";
+import { Calendar, momentLocalizer, type Event } from "react-big-calendar";
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "../styles/calendar.css";
 
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "../firebase/client";
 
+import CustomEvent from "./CustomEvent";
+
 const localizer = momentLocalizer(moment);
 
-export default function MyCalendar() {
-  const [events, setEvents] = useState<any[]>([])
+export default function MyCalendar({ onSelectEvent }: { onSelectEvent?: (event: Event) => void }) {
+  const [events, setEvents] = useState<Event[]>([])
+
+  const components = useMemo(() => ({
+    event: CustomEvent, // used by each view (Month, Day, Week)
+  }), [])
 
   const getEvents = () => {
     const unsubscribe = onSnapshot(query(collection(db, "events")), (querySnapshot) => {
-      const events:any[] = [];
+      const events: Event[] = [];
       querySnapshot.forEach((doc) => {
         try {
           events.push({
@@ -22,6 +28,7 @@ export default function MyCalendar() {
             start: doc.data().date?.toDate(),
             end: doc.data().date?.toDate(),
             allDay: false,
+            resource: doc.id,
           });
         } catch (error) {
           console.error(error);
@@ -48,6 +55,7 @@ export default function MyCalendar() {
       views={[view]}
       view={view}
       events={events}
+      components={components}
     />
   );
 }
