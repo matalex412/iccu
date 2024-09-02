@@ -7,6 +7,9 @@ import Modal from "../components/Modal.astro";
 import { app } from "../firebase/server";
 import { getFirestore } from "firebase-admin/firestore";
 
+const authenticated = Astro.cookies.has("__session")
+
+
 const handleSubmit = async () => {
   const data = await Astro.request.formData();
   const name = data.get("name");
@@ -28,7 +31,7 @@ const handleSubmit = async () => {
 <Layout title="Calendar">
   <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
     <MyCalendar client:only="react" />
-    <Modal title="Add Event" onSubmit={handleSubmit}>
+    {authenticated && <Modal title="Add Event" onSubmit={handleSubmit}>
       <>
         <div class="flex flex-col gap-2 w-full">
           <label
@@ -75,6 +78,6 @@ const handleSubmit = async () => {
           />
         </div>
       </>
-    </Modal>
+    </Modal>}
   </Section>
 </Layout>
