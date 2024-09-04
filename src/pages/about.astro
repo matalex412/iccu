@@ -1,16 +1,12 @@
 ---
-import ProfileCard from "../components/ProfileCard.astro";
+
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
-import { app } from "../firebase/server";
-import { getFirestore } from "firebase-admin/firestore";
+import AddProfile from "../components/AddProfile.astro";
+import Profiles from "../components/Profiles.tsx";
 
-const db = getFirestore(app);
-
-const committeeSnapshot = await db.collection("committee").get();
-const members = committeeSnapshot.docs.map((doc) => doc.data());
-
+const authenticated = Astro.cookies.has("__session")
 ---
 
 <Layout title="About Us">
@@ -46,50 +42,9 @@ const members = committeeSnapshot.docs.map((doc) => doc.data());
     lightBackground
     additionalClass="md:items-stretch md:text-sm text-sm flex-wrap"
   >
-  {members.map((member) => (
-    <ProfileCard
-      picture=""
-      name={member.name}
-      role={member.role}
-      verse={member.verse}
-      bio={member.bio}
-    />
-  ))}
-    <!-- // <ProfileCard
-    //   picture=""
-    //   name="Edmund Nogueiro"
-    //   role="UCCF Staff Worker"
-    //   verse="Romans 5:8"
-    //   bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision of giving every student the opportunity to hear and respond to the Gospel of Jesus! I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him."
-    // />
-    // <ProfileCard
-    //   picture=""
-    //   name="Edmund Nogueiro"
-    //   role="UCCF Staff Worker"
-    //   verse="Romans 5:8"
-    //   bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision of giving every student the opportunity to hear and respond to the Gospel of Jesus! I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him."
-    // />
-    // <ProfileCard
-    //   picture=""
-    //   name="Edmund Nogueiro"
-    //   role="UCCF Staff Worker"
-    //   verse="Romans 5:8"
-    //   bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision of giving every student the opportunity to hear and respond to the Gospel of Jesus! I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him."
-    // />
-
-    // <ProfileCard
-    //   picture=""
-    //   name="Edmund Nogueiro"
-    //   role="UCCF Staff Worker"
-    //   verse="Romans 5:8"
-    //   bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision of giving every student the opportunity to hear and respond to the Gospel of Jesus! I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him."
-    // />
-    // <ProfileCard
-    //   picture=""
-    //   name="Edmund Nogueiro"
-    //   role="UCCF Staff Worker"
-    //   verse="Romans 5:8"
-    //   bio="As the Staff Worker for Imperial, I'm here to help encourage and equip the CU in their vision. I cannot wait to see how God will use the Imperial CU to bring many people into relationship with him!"
-    // /> -->
+    <Profiles client:only="react"/> 
   </Section>
+  {authenticated && <Section lightBackground>
+    <AddProfile />
+  </Section>}
 </Layout>

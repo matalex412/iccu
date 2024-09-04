@@ -1,9 +1,7 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
-import type { Event } from "react-big-calendar";
-import { collection, onSnapshot, query } from "firebase/firestore";
 import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../firebase/client";
+import { db, auth } from "../firebase/client";
 
 const CustomEvent = (event: any) => {
 
@@ -16,9 +14,9 @@ const CustomEvent = (event: any) => {
   return (
     <div className="flex justify-between p-1">
       {event.title}
-      <button onClick={handleDelete} title="Delete event">
+      {auth.currentUser && <button onClick={handleDelete} title="Delete event">
         <FaTrash />
-      </button>
+      </button>}
     </div>
   );
 };

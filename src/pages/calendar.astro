@@ -2,7 +2,7 @@
 import MyCalendar from "../components/Calendar";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
-import Modal from "../components/Modal.astro";
+import FormModal from "../components/FormModal.astro";
 
 import { app } from "../firebase/server";
 import { getFirestore } from "firebase-admin/firestore";
@@ -31,7 +31,7 @@ const handleSubmit = async () => {
 <Layout title="Calendar">
   <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
     <MyCalendar client:only="react" />
-    {authenticated && <Modal title="Add Event" onSubmit={handleSubmit}>
+    {authenticated && <FormModal title="Add Event" onSubmit={handleSubmit}>
       <>
         <div class="flex flex-col gap-2 w-full">
           <label
@@ -78,6 +78,6 @@ const handleSubmit = async () => {
           />
         </div>
       </>
-    </Modal>}
+    </FormModal>}
   </Section>
 </Layout>
