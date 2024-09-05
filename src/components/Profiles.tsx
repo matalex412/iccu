@@ -12,9 +12,11 @@ export default function Profiles() {
       (querySnapshot) => {
         const profiles: any[] = [];
         querySnapshot.forEach((doc) => {
-          profiles.push(doc.data());
+          profiles.push({
+            id: doc.id,
+            ...doc.data()
+          });
         });
-        console.log(profiles);
         setProfiles(profiles);
       }
     );
@@ -29,7 +31,8 @@ export default function Profiles() {
     <>
       {profiles.map((profile) => (
         <ProfileCard
-          key={profile.name}
+          key={profile.id}
+          id={profile.id}
           picture={profile.picture}
           name={profile.name}
           role={profile.role}
