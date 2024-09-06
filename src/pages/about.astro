@@ -1,10 +1,9 @@
 ---
-
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
-
-import AddProfile from "../components/AddProfile.astro";
 import Profiles from "../components/Profiles.tsx";
+import Modal from "../components/Modal.astro";
+import AddProfileForm from "../components/AddProfileForm";
 
 const authenticated = Astro.cookies.has("__session")
 ---
@@ -45,6 +44,8 @@ const authenticated = Astro.cookies.has("__session")
     <Profiles client:only="react"/> 
   </Section>
   {authenticated && <Section lightBackground>
-    <AddProfile />
+    <Modal title="Add profile">
+      <AddProfileForm client:only="react" />
+    </Modal>
   </Section>}
 </Layout>
