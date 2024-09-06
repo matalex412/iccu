@@ -4,10 +4,11 @@ import { app } from "../../firebase/server";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
 
-const storage = getStorage();
+const storage = getStorage(app);
+const bucket = storage.bucket("gs://iccu-bcca7.appspot.com");
 const db = getFirestore(app);
 const profileRef = db.collection("profiles");
-// const storageRef = ref(storage, "profilePictures");
+
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData();
@@ -18,9 +19,12 @@ export const POST: APIRoute = async ({ request }) => {
   const bio = data.get("bio");
   const profilePicture = (data.get("profilePicture"))
 
-//   if (profilePicture && (profilePicture as File).type.startsWith("image")) {
-//     await uploadBytes(storageRef, profilePicture as File);
-//   }
+  const file = bucket.file("profilePicture/1.png")
+  if (profilePicture) {
+    const buffer = await (profilePicture as File).arrayBuffer()
+    const bf = Buffer.from(buffer)
+    await file.save(bf)
+  }
 
   await profileRef.add({
     name,
