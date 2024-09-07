@@ -1,20 +1,15 @@
-import React, { type FormEvent, type FC, useState, type ReactNode } from "react"
+import React, { type FC, type FormEvent, type ReactNode, useState } from "react"
 import Modal from "react-modal"
-
 
 Modal.setAppElement("#main")
 
 interface FormModalProps {
-  title: string,
-  endpoint: string,
-  children: ReactNode,
+  title: string
+  endpoint: string
+  children: ReactNode
 }
 
-const FormModal: FC<FormModalProps> = ({
-  title,
-  endpoint,
-  children,
-}) => {
+const FormModal: FC<FormModalProps> = ({ title, endpoint, children }) => {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [error, setError] = useState("")
 
@@ -42,9 +37,12 @@ const FormModal: FC<FormModalProps> = ({
 
   return (
     <>
-      <button onClick={openModal} 
+      <button
+        onClick={openModal}
         className="text-white p-3 rounded-sm items-center bg-leaf-400 hover:bg-leaf-500"
-      >{title}</button>
+      >
+        {title}
+      </button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}

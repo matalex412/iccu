@@ -9,10 +9,7 @@ interface Props {
 const ModalFormInput: FC<Props> = ({ label, inputProps, className }) => {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <label
-        htmlFor={inputProps.id}
-        className="block text-sm font-medium text-gray-900"
-      >
+      <label htmlFor={inputProps.id} className="block text-sm font-medium text-gray-900">
         {label}
       </label>
       <input

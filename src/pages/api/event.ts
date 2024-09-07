@@ -12,13 +12,10 @@ export const POST: APIRoute = async ({ request }) => {
   const repeats = Math.max(parseInt(data.get("repeat")?.toString() ?? ""), 1)
 
   if (!name || !date || !repeats) {
-    return new Response(
-      JSON.stringify({ message: "Please fill out all fields" }),
-      { status: 400 }
-    )
+    return new Response(JSON.stringify({ message: "Please fill out all fields" }), { status: 400 })
   }
 
-  try {    
+  try {
     for (let i = 0; i < repeats; i++) {
       const eventDate = new Date(date)
       eventDate.setDate(eventDate.getDate() + i * 7)
