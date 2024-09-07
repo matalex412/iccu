@@ -1,17 +1,17 @@
 ---
 import { app } from "../firebase/server";
 import { getAuth, UserRecord } from "firebase-admin/auth";
+import HeaderItem from "./HeaderItem.astro";
 
 const auth = getAuth(app);
 
 const sessionCookie = Astro.cookies.get("__session")?.value;
-let user: UserRecord | null = null
+let user: UserRecord | null = null;
 
 if (sessionCookie) {
   const decodedCookie = await auth.verifySessionCookie(sessionCookie);
   user = await auth.getUser(decodedCookie.uid);
 }
-
 ---
 
 <header>
@@ -45,50 +45,30 @@ if (sessionCookie) {
             d="M1 1h15M1 7h15M1 13h15"></path>
         </svg>
       </button>
-      <div
-        class="hidden p-2 w-full md:block md:w-auto"
-        id="navbar-default"
-      >
+      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul
-          class="font-medium flex flex-col md:p-0 bg-leaf-500 md:flex-row md:space-x-8"
+          class="font-medium flex flex-col p-2 md:p-0 bg-leaf-500 gap-2 md:flex-row md:space-x-8"
         >
-          <li>
-            <a
-              href="/events"
-              class="block p-3 rounded-sm hover:text-leaf-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-300 md:p-0"
-              >Events</a
-            >
-          </li>
-          <li>
-            <a
-              href="/calendar"
-              class="block p-3 rounded-sm hover:text-leaf-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-300 md:p-0"
-              >Calendar</a
-            >
-          <li>
-            <a
-              href="/about"
-              class="block p-3 rounded-sm hover:text-leaf-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-300 md:p-0"
-              >About</a
-            >
-          </li>
-          <li>
-            <a
-              href="/contact"
-              class="block p-3 rounded-sm hover:text-leaf-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-300 md:p-0"
-              >Contact</a
-            >
-          </li>
-          <li>
-            <a
-              href="/support-us"
-              class="block p-3 rounded-sm hover:text-leaf-500 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-gray-300 md:p-0"
-              >Support Us</a
-            >
-          </li>
-          {user && <li><form action="/api/auth/signout">
-            <button type="submit">Sign out</button>
-          </form></li>}
+          <HeaderItem href="/events" label="Events" />
+          <HeaderItem href="/calendar" label="Calendar" />
+          <HeaderItem href="/about" label="About" />
+          <HeaderItem href="/contact" label="Contact" />
+          <HeaderItem href="/support-us" label="Support Us" />
+
+          {
+            user && (
+              <li>
+                <form action="/api/auth/signout">
+                  <button
+                    class="block p-2 rounded-sm w-full text-start bg-leaf-300 hover:text-leaf-500 hover:bg-gray-100"
+                    type="submit"
+                  >
+                    Sign out
+                  </button>
+                </form>
+              </li>
+            )
+          }
         </ul>
       </div>
     </div>
