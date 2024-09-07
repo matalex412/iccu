@@ -59,7 +59,7 @@ const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
       style={{ height: 500 }}
       className="w-full"
       views={[view]}
-      view={view}
+      defaultView={view}
       events={events}
       components={components}
     />

@@ -34,7 +34,7 @@ const ProfileCard: FC<ProfileCardProps> = ({ id, profile }) => {
   return (
     <div className="text-sm max-w-sm p-7 gap-3 flex flex-col items-center justify-around rounded-xl shadow-md bg-leaf-100 text-leaf-600">
       {profilePicture ? (
-        <img src={profilePicture} alt="profile picture" className="rounded-full w-40 h-40" />
+        <img src={profilePicture} alt="profile picture" className="rounded-full w-40 h-40 object-cover" />
       ) : (
         <div className="rounded-full w-40 h-40 bg-leaf-500"></div>
       )}

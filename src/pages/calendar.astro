@@ -12,8 +12,8 @@ const authenticated = Astro.cookies.has("__session");
 <Layout title="Calendar">
   <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
     <MyCalendar client:only="react" />
-    {authenticated && <Modal title="Add Event">
+    {authenticated &&
       <AddEventForm client:only="react"/>
-    </Modal>}
+    }
   </Section>
 </Layout>
