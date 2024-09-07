@@ -4,7 +4,6 @@ import { getFirestore } from "firebase-admin/firestore"
 import { app } from "../../firebase/server"
 
 const db = getFirestore(app)
-const profileRef = db.collection("profiles")
 
 export const POST: APIRoute = async ({ request }) => {
   const data = await request.formData()
@@ -12,7 +11,6 @@ export const POST: APIRoute = async ({ request }) => {
   const date = data.get("date")!.toString()
   const repeats = Math.max(parseInt(data.get("repeat")!.toString()), 1)
 
-  const db = getFirestore(app)
   for (let i = 0; i < repeats; i++) {
     const eventDate = new Date(date)
     eventDate.setDate(eventDate.getDate() + i * 7)

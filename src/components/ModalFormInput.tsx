@@ -1,8 +1,8 @@
-import React, { type FC } from "react"
+import React, { type FC, type InputHTMLAttributes } from "react"
 
 interface Props {
   label: string
-  inputProps: React.InputHTMLAttributes<HTMLInputElement>
+  inputProps: InputHTMLAttributes<HTMLInputElement>
   className?: string
 }
 

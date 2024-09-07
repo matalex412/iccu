@@ -2,7 +2,6 @@ import type { APIRoute } from "astro"
 import { randomBytes } from "crypto"
 import { getFirestore } from "firebase-admin/firestore"
 import { getStorage } from "firebase-admin/storage"
-import { ref } from "firebase/storage"
 
 import { app } from "../../firebase/server"
 

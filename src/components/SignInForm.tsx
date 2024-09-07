@@ -1,10 +1,8 @@
-import { getAuth, inMemoryPersistence, signInWithEmailAndPassword } from "firebase/auth"
+import { inMemoryPersistence, signInWithEmailAndPassword } from "firebase/auth"
 import React from "react"
 
-import { app } from "../firebase/client"
-import ModalFormInput from "./ModalFormInput"
+import { auth } from "../firebase/client"
 
-const auth = getAuth(app)
 auth.setPersistence(inMemoryPersistence)
 
 const SignInForm = () => {
