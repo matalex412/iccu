@@ -1,5 +1,5 @@
 ---
-
+const authenticated = Astro.cookies.has("__session")
 ---
 
 <footer>
@@ -47,6 +47,7 @@
           </svg>
         </a>
         <span class="">cu@imperial.ac.uk</span>
+        {!authenticated && <a href="/signin">Admin Login</a>}
       </div>
     </div>
   </div>
