@@ -1,6 +1,6 @@
 ---
 import AddEvent from "../components/AddEvent";
-import MyCalendar from "../components/Calendar";
+import ReactCalendar from "../components/Calendar";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -9,7 +9,7 @@ const authenticated = Astro.cookies.has("__session");
 
 <Layout title="Calendar">
   <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
-    <MyCalendar client:only="react" />
+    <ReactCalendar client:only="react" />
     {authenticated &&
       <AddEvent client:only="react"/>
     }
