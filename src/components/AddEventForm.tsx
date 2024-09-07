@@ -1,5 +1,5 @@
 import React from "react";
-import FormInput from "./FormInput";
+import ModalFormInput from "./ModalFormInput";
 
 const AddEventForm = () => {
   const onSubmit = async (e: React.FormEvent) => {
@@ -14,7 +14,7 @@ const AddEventForm = () => {
 
   return (
     <form onSubmit={onSubmit} className="p-5 flex flex-col gap-5">
-      <FormInput
+      <ModalFormInput
         label="Event Name"
         inputProps={{
           type: "text",
@@ -24,7 +24,7 @@ const AddEventForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Event Date"
         inputProps={{
           type: "date",
@@ -33,7 +33,7 @@ const AddEventForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Number of Weeks"
         inputProps={{
           type: "number",

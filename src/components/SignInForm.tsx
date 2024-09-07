@@ -1,5 +1,5 @@
 import React from "react";
-import FormInput from "./FormInput";
+import ModalFormInput from "./ModalFormInput";
 import { getAuth, inMemoryPersistence, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../firebase/client";
 
@@ -36,7 +36,7 @@ const SignInForm = () => {
 
   return (
     <form onSubmit={onSubmit} className="p-5 flex flex-col gap-5">
-      <FormInput
+      <ModalFormInput
         label="Email"
         inputProps={{
           type: "email",
@@ -46,7 +46,7 @@ const SignInForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Password"
         inputProps={{
           type: "password",

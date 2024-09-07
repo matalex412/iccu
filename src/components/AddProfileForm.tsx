@@ -1,5 +1,5 @@
 import React from "react";
-import FormInput from "./FormInput";
+import ModalFormInput from "./ModalFormInput";
 
 const AddProfileForm = () => {
   const onSubmit = async (e: React.FormEvent) => {
@@ -14,9 +14,9 @@ const AddProfileForm = () => {
 
   return (
     <form onSubmit={onSubmit} className="p-5 flex flex-col gap-5">
-      <FormInput
+      <ModalFormInput
         label="Profile Picture"
-        applyStyles={false}
+        className="text-gray-500 dark:text-white"
         inputProps={{
           type: "file",
           name: "profilePicture",
@@ -24,7 +24,7 @@ const AddProfileForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Name"
         inputProps={{
           type: "text",
@@ -34,7 +34,7 @@ const AddProfileForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Role"
         inputProps={{
           type: "text",
@@ -44,7 +44,7 @@ const AddProfileForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Course and Year"
         inputProps={{
           type: "text",
@@ -53,7 +53,7 @@ const AddProfileForm = () => {
           placeholder: "E.g. 2nd year Maths",
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Verse"
         inputProps={{
           type: "text",
@@ -63,7 +63,7 @@ const AddProfileForm = () => {
           required: true,
         }}
       />
-      <FormInput
+      <ModalFormInput
         label="Bio"
         inputProps={{
           type: "text",
@@ -75,7 +75,7 @@ const AddProfileForm = () => {
       />
       <button
         type="submit"
-        className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         <svg
           className="me-1 -ms-1 w-5 h-5"
