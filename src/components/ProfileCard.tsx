@@ -19,9 +19,11 @@ const ProfileCard: React.FC<Props> = ({ id, picture, name, role, yearCourse, ver
     }
   };
 
+  console.log(picture)
+
   return (
     <div className="text-sm max-w-sm p-7 gap-3 flex flex-col items-center justify-around rounded-xl shadow-md bg-leaf-100 text-leaf-600">
-      <div className="rounded-full w-40 h-40 bg-leaf-500" style={{ backgroundImage: `url(${picture})`, backgroundSize: 'cover' }}></div>
+      {picture ? <img src={picture} alt="profile picture" className="rounded-full w-40 h-40" /> : <div className="rounded-full w-40 h-40 bg-leaf-500"></div>}
       <p className="uppercase font-semibold">{name}</p>
       <p>{role}</p>
       {yearCourse && <p>{yearCourse}</p>}

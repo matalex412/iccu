@@ -21,6 +21,7 @@ const AddProfileForm = () => {
           type: "file",
           name: "profilePicture",
           id: "profilePicture",
+          required: true,
         }}
       />
       <FormInput
@@ -50,7 +51,6 @@ const AddProfileForm = () => {
           name: "yearCourse",
           id: "yearCourse",
           placeholder: "E.g. 2nd year Maths",
-          required: true,
         }}
       />
       <FormInput
