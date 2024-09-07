@@ -33,7 +33,7 @@ const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
             title: doc.data().title,
             start: doc.data().date?.toDate(),
             end: doc.data().date?.toDate(),
-            allDay: false,
+            allDay: true,
             resource: doc.id,
           })
         } catch (error) {
@@ -62,6 +62,8 @@ const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
       defaultView={view}
       events={events}
       components={components}
+      showAllEvents
+      toolbar={false}
     />
   )
 }
