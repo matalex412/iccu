@@ -1,10 +1,8 @@
 ---
+import AddEvent from "../components/AddEvent";
 import MyCalendar from "../components/Calendar";
 import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
-
-import Modal from "../components/Modal.astro";
-import AddEventForm from "../components/AddEventForm";
 
 const authenticated = Astro.cookies.has("__session");
 ---
@@ -13,7 +11,7 @@ const authenticated = Astro.cookies.has("__session");
   <Section lightBackground additionalClass="text-leaf-600 md:flex-col">
     <MyCalendar client:only="react" />
     {authenticated &&
-      <AddEventForm client:only="react"/>
+      <AddEvent client:only="react"/>
     }
   </Section>
 </Layout>

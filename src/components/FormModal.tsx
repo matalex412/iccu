@@ -1,11 +1,20 @@
-import React, { type FormEvent, useState } from "react"
+import React, { type FormEvent, type FC, useState, type ReactNode } from "react"
 import Modal from "react-modal"
 
-import ModalFormInput from "./ModalFormInput"
 
 Modal.setAppElement("#main")
 
-const AddEventForm = () => {
+interface FormModalProps {
+  title: string,
+  endpoint: string,
+  children: ReactNode,
+}
+
+const FormModal: FC<FormModalProps> = ({
+  title,
+  endpoint,
+  children,
+}) => {
   const [modalIsOpen, setIsOpen] = useState(false)
   const [error, setError] = useState("")
 
@@ -13,7 +22,7 @@ const AddEventForm = () => {
     e.preventDefault()
 
     const formData = new FormData(e.target as HTMLFormElement)
-    const res = await fetch("/api/event", {
+    const res = await fetch(endpoint, {
       method: "POST",
       body: formData,
     })
@@ -35,7 +44,7 @@ const AddEventForm = () => {
     <>
       <button onClick={openModal} 
         className="text-white p-3 rounded-sm items-center bg-leaf-400 hover:bg-leaf-500"
-      >Add Event</button>
+      >{title}</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -43,7 +52,7 @@ const AddEventForm = () => {
       >
         <div className="p-5 flex flex-col gap-5">
           <div className="flex justify-between">
-            <h3 className="text-lg font-semibold text-gray-900 ">Add Event</h3>
+            <h3 className="text-lg font-semibold text-gray-900 ">{title}</h3>
             <button
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-sm text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -72,35 +81,8 @@ const AddEventForm = () => {
                 Error: {error}
               </div>
             )}
-            <ModalFormInput
-              label="Event Name"
-              inputProps={{
-                type: "text",
-                name: "name",
-                id: "name",
-                placeholder: "e.g. Curious",
-                required: true,
-              }}
-            />
-            <ModalFormInput
-              label="Event Date"
-              inputProps={{
-                type: "date",
-                name: "date",
-                id: "date",
-                required: true,
-              }}
-            />
-            <ModalFormInput
-              label="Number of Weeks"
-              inputProps={{
-                type: "number",
-                name: "repeat",
-                id: "repeat",
-                placeholder: "How many weeks in a row this event will occur",
-                required: true,
-              }}
-            />
+
+            {children}
 
             <button
               type="submit"
@@ -118,7 +100,7 @@ const AddEventForm = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              Add Event
+              {title}
             </button>
           </form>
         </div>
@@ -127,4 +109,4 @@ const AddEventForm = () => {
   )
 }
 
-export default AddEventForm
+export default FormModal
