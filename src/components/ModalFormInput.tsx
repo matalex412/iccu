@@ -1,9 +1,9 @@
-import React, { type FC } from "react";
+import React, { type FC } from "react"
 
 interface Props {
-  label: string;
-  inputProps: React.InputHTMLAttributes<HTMLInputElement>;
-  className?: string;
+  label: string
+  inputProps: React.InputHTMLAttributes<HTMLInputElement>
+  className?: string
 }
 
 const ModalFormInput: FC<Props> = ({ label, inputProps, className }) => {
@@ -24,7 +24,7 @@ const ModalFormInput: FC<Props> = ({ label, inputProps, className }) => {
         {...inputProps}
       />
     </div>
-  );
-};
+  )
+}
 
-export default ModalFormInput;
+export default ModalFormInput

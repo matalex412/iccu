@@ -1,16 +1,17 @@
-import React from "react";
-import ModalFormInput from "./ModalFormInput";
+import React from "react"
+
+import ModalFormInput from "./ModalFormInput"
 
 const AddEventForm = () => {
   const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const formData = new FormData(e.target as HTMLFormElement);
+    const formData = new FormData(e.target as HTMLFormElement)
     await fetch("/api/event", {
       method: "POST",
       body: formData,
-    });
-  };
+    })
+  }
 
   return (
     <form onSubmit={onSubmit} className="p-5 flex flex-col gap-5">
@@ -63,7 +64,7 @@ const AddEventForm = () => {
         Add Event
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default AddEventForm;
+export default AddEventForm
