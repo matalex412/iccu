@@ -1,6 +1,7 @@
 import { deleteDoc, doc } from "firebase/firestore"
 import React from "react"
 import { FaTrash } from "react-icons/fa"
+
 import { auth, db } from "../firebase/client"
 
 const CustomEvent = (event: any) => {

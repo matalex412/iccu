@@ -2,6 +2,7 @@
 import { app } from "../firebase/server";
 import { getAuth, UserRecord } from "firebase-admin/auth";
 import HeaderItem from "./HeaderItem.astro";
+import SignOutForm from "./SignOutForm";
 
 const auth = getAuth(app);
 
@@ -58,14 +59,7 @@ if (sessionCookie) {
           {
             user && (
               <li>
-                <form action="/api/auth/signout">
-                  <button
-                    class="block p-2 rounded-sm w-full text-start bg-leaf-300 hover:text-leaf-500 hover:bg-gray-100"
-                    type="submit"
-                  >
-                    Sign out
-                  </button>
-                </form>
+               <SignOutForm client:only="react" /> 
               </li>
             )
           }

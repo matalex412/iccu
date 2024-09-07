@@ -3,7 +3,7 @@ import React from "react"
 
 import { auth } from "../firebase/client"
 
-auth.setPersistence(inMemoryPersistence)
+// auth.setPersistence(inMemoryPersistence)
 
 const SignInForm = () => {
   const onSubmit = async (e: React.FormEvent) => {
