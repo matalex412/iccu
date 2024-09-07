@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { db } from "../firebase/client"
 import ProfileCard from "./ProfileCard"
 
-export default function Profiles() {
+const Profiles = () => {
   const [profiles, setProfiles] = useState<any[]>([])
 
   const getProfiles = () => {
@@ -33,3 +33,5 @@ export default function Profiles() {
     </>
   )
 }
+
+export default Profiles

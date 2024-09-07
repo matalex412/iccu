@@ -1,6 +1,6 @@
 import { collection, onSnapshot, query } from "firebase/firestore"
 import moment from "moment"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { type FC, useEffect, useMemo, useState } from "react"
 import { Calendar, type Event, momentLocalizer } from "react-big-calendar"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 
@@ -10,7 +10,11 @@ import CustomEvent from "./CustomEvent"
 
 const localizer = momentLocalizer(moment)
 
-export default function MyCalendar({ onSelectEvent }: { onSelectEvent?: (event: Event) => void }) {
+interface MyCalendarProps {
+  onSelectEvent?: (event: Event) => void
+}
+
+const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
   const [events, setEvents] = useState<Event[]>([])
 
   const components = useMemo(
@@ -61,3 +65,5 @@ export default function MyCalendar({ onSelectEvent }: { onSelectEvent?: (event: 
     />
   )
 }
+
+export default MyCalendar

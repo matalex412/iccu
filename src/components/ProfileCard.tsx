@@ -1,6 +1,6 @@
 import { deleteDoc, doc } from "firebase/firestore"
 import { deleteObject, getStorage, ref } from "firebase/storage"
-import React from "react"
+import React, { type FC } from "react"
 
 import { db } from "../firebase/client"
 
@@ -16,12 +16,12 @@ type Profile = {
   pictureStoragePath: string
 }
 
-interface Props {
+interface ProfileCardProps {
   id: string
   profile: Profile
 }
 
-const ProfileCard: React.FC<Props> = ({ id, profile }) => {
+const ProfileCard: FC<ProfileCardProps> = ({ id, profile }) => {
   const { profilePicture, name, role, yearCourse, verse, bio, pictureStoragePath } = profile
 
   const handleDelete = async () => {
