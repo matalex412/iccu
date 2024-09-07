@@ -35,27 +35,11 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="p-5 flex flex-col gap-5">
-      <ModalFormInput
-        label="Email"
-        inputProps={{
-          type: "email",
-          name: "email",
-          id: "email",
-          placeholder: "Enter email here",
-          required: true,
-        }}
-      />
-      <ModalFormInput
-        label="Password"
-        inputProps={{
-          type: "password",
-          name: "password",
-          id: "password",
-          placeholder: "Enter password here",
-          required: true,
-        }}
-      />
+    <form onSubmit={onSubmit} className="flex flex-col gap-5">
+      <label>Email</label>
+      <input type="email" name="email" className="text-gray-500 rounded-sm"/>
+      <label>Password</label>
+      <input type="password" name="password" className="text-gray-500 rounded-sm"/>
       <button type="submit" className="bg-leaf-300 text-white p-2 rounded">
         Sign In
       </button>
