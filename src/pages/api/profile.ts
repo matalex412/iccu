@@ -27,6 +27,7 @@ export const POST: APIRoute = async ({ request }) => {
   const profilePicture = (data.get("profilePicture"))
 
   let pictureURL;
+  let filePath;
   if (profilePicture) {
     if (!(profilePicture instanceof File)|| !allowedImageTypes.includes(profilePicture.type)) {
       return new Response(
@@ -48,7 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const randomString = randomBytes(8).toString("hex")
     const fileExtension = getFileExtension(profilePicture)
-    const filePath = `profilePictures/${randomString}.${fileExtension}`
+    filePath = `profilePictures/${randomString}.${fileExtension}`
 
     
     const file = bucket.file(filePath)
@@ -66,6 +67,7 @@ export const POST: APIRoute = async ({ request }) => {
     verse,
     bio,
     profilePicture: pictureURL,
+    pictureStoragePath: filePath,
   });
 
   return new Response(

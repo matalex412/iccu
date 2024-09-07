@@ -33,12 +33,7 @@ export default function Profiles() {
         <ProfileCard
           key={profile.id}
           id={profile.id}
-          picture={profile.profilePicture}
-          name={profile.name}
-          role={profile.role}
-          yearCourse={profile.yearCourse}
-          verse={profile.verse}
-          bio={profile.bio}
+          profile={profile}
         />
       ))}
     </>
