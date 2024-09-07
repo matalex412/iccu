@@ -35,7 +35,8 @@ const SignInForm = () => {
       } else if (response.redirected) {
         window.location.assign(response.url)
       }
-    } catch {
+    } catch (error) {
+      console.error(error)
       setError("Invalid login details")
     }
     setLoading(false)
