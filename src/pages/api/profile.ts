@@ -56,11 +56,10 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   try {
-
     const randomString = randomBytes(8).toString("hex")
     const fileExtension = getFileExtension(profilePicture)
     filePath = `profilePictures/${randomString}.${fileExtension}`
-    
+
     const file = bucket.file(filePath)
     const buffer = await (profilePicture as File).arrayBuffer()
     const bf = Buffer.from(buffer)
