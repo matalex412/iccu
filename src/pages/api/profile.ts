@@ -25,48 +25,75 @@ export const POST: APIRoute = async ({ request }) => {
   const bio = data.get("bio")
   const profilePicture = data.get("profilePicture")
 
+  if (!name || !role || !verse || !bio || !profilePicture) {
+    return new Response(
+      JSON.stringify({
+        message: "Missing required fields. Every field is required except year/course.",
+      }),
+      { status: 400 }
+    )
+  }
+
   let pictureURL
   let filePath
-  if (profilePicture) {
-    if (!(profilePicture instanceof File) || !allowedImageTypes.includes(profilePicture.type)) {
-      return new Response(
-        JSON.stringify({
-          message: "Invalid file type",
-        }),
-        { status: 400 }
-      )
-    }
 
-    if (profilePicture.size > MAX_FILE_SIZE) {
-      return new Response(
-        JSON.stringify({
-          message: "File too large",
-        }),
-        { status: 400 }
-      )
-    }
+  if (!(profilePicture instanceof File) || !allowedImageTypes.includes(profilePicture.type)) {
+    return new Response(
+      JSON.stringify({
+        message: "Invalid file type",
+      }),
+      { status: 400 }
+    )
+  }
+
+  if (profilePicture.size > MAX_FILE_SIZE) {
+    return new Response(
+      JSON.stringify({
+        message: "File too large",
+      }),
+      { status: 400 }
+    )
+  }
+
+  try {
 
     const randomString = randomBytes(8).toString("hex")
     const fileExtension = getFileExtension(profilePicture)
     filePath = `profilePictures/${randomString}.${fileExtension}`
-
+    
     const file = bucket.file(filePath)
     const buffer = await (profilePicture as File).arrayBuffer()
     const bf = Buffer.from(buffer)
     await file.save(bf)
     await file.makePublic()
     pictureURL = file.publicUrl()
+  } catch {
+    return new Response(
+      JSON.stringify({
+        message: "Error uploading profile picture",
+      }),
+      { status: 500 }
+    )
   }
 
-  await profileRef.add({
-    name,
-    role,
-    yearCourse,
-    verse,
-    bio,
-    profilePicture: pictureURL,
-    pictureStoragePath: filePath,
-  })
+  try {
+    await profileRef.add({
+      name,
+      role,
+      yearCourse,
+      verse,
+      bio,
+      profilePicture: pictureURL,
+      pictureStoragePath: filePath,
+    })
+  } catch {
+    return new Response(
+      JSON.stringify({
+        message: "Error saving profile",
+      }),
+      { status: 500 }
+    )
+  }
 
   return new Response(
     JSON.stringify({
