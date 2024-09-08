@@ -3,12 +3,11 @@ import React from "react"
 import { auth } from "../firebase/client"
 
 const SignOutForm = () => {
-  console.log("SignOutForm")
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     await auth.signOut()
-    console.log("Signed out")
+    
     const response = await fetch("/api/auth/signout", {
       method: "GET",
     })
