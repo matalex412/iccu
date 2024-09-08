@@ -1,0 +1,54 @@
+---
+
+---
+
+<div class="flex w-full justify-between">
+  <div class="flex flex-col items-center md:gap-2">
+    <p class="font-semibold text-2xl md:text-3xl">Newsletter</p>
+    <p class="text-center">Sign up to hear about weekly events, prayer points and more...</p>
+  </div>
+  <form
+    action=`https://ic.us20.list-manage.com/subscribe/post?u=${import.meta.env.MAILCHIMP_U}_id=${import.meta.env.MAILCHIMP_ID}`
+    method="post"
+    class="flex flex-wrap justify-center gap-3 items-center"
+  >
+    <input
+      class="p-3 rounded-md text-gray-500"
+      type="email"
+      name="EMAIL"
+      required={true}
+      placeholder="Email"
+    />
+    <div id="mce-responses">
+      <div id="mce-error-response" style="display: none;"></div>
+      <div id="mce-success-response" style="display: none;"></div>
+    </div>
+    <div aria-hidden="true" style="position: absolute; left: -5000px;">
+      /* real people should not fill this in and expect good things - do not remove this or risk
+      form bot signups */
+      <input type="text" name="b_e7ecc702cf08dd4b98d6b3b42_dadf307868" tabindex="-1" value="" />
+    </div>
+    <button
+      type="submit"
+      name="subscribe"
+      id="mc-embedded-subscribe"
+      class="hover:bg-leaf-50 hover:text-leaf-500 bg-leaf-300 rounded-md px-4 py-2 flex items-center"
+      >Sign&nbsp;up</button
+    >
+  </form>
+  <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+  ></script>
+  <script type="text/javascript">
+    ;(function ($) {
+      window.fnames = new Array()
+      window.ftypes = new Array()
+      fnames[0] = "EMAIL"
+      ftypes[0] = "email"
+      fnames[1] = "FNAME"
+      ftypes[1] = "text"
+      fnames[2] = "LNAME"
+      ftypes[2] = "text"
+    })(jQuery)
+    var $mcj = jQuery.noConflict(true)
+  </script>
+</div>

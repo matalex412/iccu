@@ -4,7 +4,7 @@ import EventCard from "../components/EventCard.astro"
 import Section from "../components/Section.astro"
 import { Image } from "astro:assets"
 import groupImage from "../assets/iccu1.jpeg"
-import MailingForm from "../components/MailingForm.astro"
+import MailchimpForm from "../components/MailchimpForm.astro"
 ---
 
 <Layout title="Imperial College Christian Union">
@@ -54,7 +54,7 @@ import MailingForm from "../components/MailingForm.astro"
       >More details</a
     >
   </Section>
-  {false &&<Section additionalClass="justify-between">
-    <MailingForm />
-  </Section>}
+  <Section additionalClass="justify-between">
+    <MailchimpForm />
+  </Section>
 </Layout>
