@@ -1,10 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import EventCard from "../components/EventCard.astro";
-import Section from "../components/Section.astro";
-import { Image } from "astro:assets";
-import groupImage from "../assets/iccu1.jpeg";
-import MailingForm from "../components/MailingForm.astro";
+import Layout from "../layouts/Layout.astro"
+import EventCard from "../components/EventCard.astro"
+import Section from "../components/Section.astro"
+import { Image } from "astro:assets"
+import groupImage from "../assets/iccu1.jpeg"
+import MailingForm from "../components/MailingForm.astro"
 ---
 
 <Layout title="Imperial College Christian Union">
@@ -12,8 +12,7 @@ import MailingForm from "../components/MailingForm.astro";
     <Image src={groupImage} alt="Group photo" width="500" />
     <div class="flex flex-col gap-5 md:gap-10">
       <p class="text-2xl text-center md:text-3xl">
-        We are a community of Christians sharing the good
-        news of Jesus Christ at Imperial College!
+        We are a community of Christians sharing the good news of Jesus Christ at Imperial College!
       </p>
       <div class="flex justify-center">
         <a
@@ -25,24 +24,15 @@ import MailingForm from "../components/MailingForm.astro";
       </div>
     </div>
   </Section>
-  <Section
-    lightBackground
-    additionalClass="items-stretch flex-wrap"
-  >
-    <p
-      class="font-semibold text-leaf-600 text-3xl self-center"
-    >
-      Our Regular Events
-    </p>
-    <div
-      class="box-border flex flex-wrap gap-5 flex-col md:flex-row items-stretch"
-    >
+  <Section lightBackground additionalClass="items-stretch flex-wrap">
+    <p class="font-semibold text-leaf-600 text-3xl self-center">Our Regular Events</p>
+    <div class="box-border flex flex-wrap gap-5 flex-col md:flex-row items-stretch">
       <EventCard
         title="Hub"
         description="Worship, learning and prayer focused on our CU vision. If you're already a Christian, this is the place to start!"
         path=""
         time="Thursday 6pm"
-        location="RSM G20"
+        location="RSM 147"
       />
       <EventCard
         title="Skeptical"
@@ -57,12 +47,10 @@ import MailingForm from "../components/MailingForm.astro";
         description="A Bible study open to anyone and everyone, exploring the basics of the Christian faith."
         path=""
         time="Monday 12pm"
-        location="tbd"
+        location="SAF G15"
       />
     </div>
-    <a
-      href="/events"
-      class="text-end w-full text-leaf-600 underline hover:text-leaf-800"
+    <a href="/events" class="text-end w-full text-leaf-600 underline hover:text-leaf-800"
       >More details</a
     >
   </Section>
