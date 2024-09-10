@@ -7,7 +7,7 @@ const SignOutForm = () => {
     e.preventDefault()
 
     await auth.signOut()
-    
+
     const response = await fetch("/api/auth/signout", {
       method: "GET",
     })
