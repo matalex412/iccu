@@ -1,8 +1,9 @@
 import { collection, onSnapshot, query } from "firebase/firestore"
 import moment from "moment"
 import React, { type FC, useEffect, useMemo, useState } from "react"
-import { Calendar, type Event, momentLocalizer } from "react-big-calendar"
+import { Calendar, type Event, type ViewsProps, momentLocalizer } from "react-big-calendar"
 import "react-big-calendar/lib/css/react-big-calendar.css"
+import { useMediaQuery } from "react-responsive"
 
 import { db } from "../firebase/client"
 import "../styles/calendar.css"
@@ -10,11 +11,7 @@ import CustomEvent from "./CustomEvent"
 
 const localizer = momentLocalizer(moment)
 
-interface MyCalendarProps {
-  onSelectEvent?: (event: Event) => void
-}
-
-const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
+const MyCalendar: FC = () => {
   const [events, setEvents] = useState<Event[]>([])
 
   const components = useMemo(
@@ -24,6 +21,10 @@ const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
     []
   )
 
+  const isDesktop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  })
+
   const getEvents = () => {
     const unsubscribe = onSnapshot(query(collection(db, "events")), (querySnapshot) => {
       const events: Event[] = []
@@ -31,9 +32,8 @@ const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
         try {
           events.push({
             title: doc.data().title,
-            start: doc.data().date?.toDate(),
-            end: doc.data().date?.toDate(),
-            allDay: true,
+            start: doc.data().start?.toDate(),
+            end: doc.data().end?.toDate(),
             resource: doc.id,
           })
         } catch (error) {
@@ -49,21 +49,29 @@ const MyCalendar: FC<MyCalendarProps> = ({ onSelectEvent }) => {
     return getEvents()
   }, [])
 
-  const isMobile = false
-  const view = isMobile ? "week" : "month"
+  var min = new Date()
+  min.setHours(7)
+  min.setMinutes(0)
+
+  var max = new Date()
+  max.setHours(22)
+  max.setMinutes(0)
+
   return (
     <Calendar
       localizer={localizer}
+      showMultiDayTimes
       startAccessor="start"
       endAccessor="end"
       style={{ height: 500 }}
       className="w-full"
-      views={[view]}
-      defaultView={view}
+      views={isDesktop ? ["month", "week", "day"] : ["day"]}
+      defaultView={isDesktop ? "month" : "day"}
       events={events}
       components={components}
+      min={min}
+      max={max}
       showAllEvents
-      toolbar={false}
     />
   )
 }

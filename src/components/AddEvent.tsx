@@ -16,11 +16,20 @@ const AddEvent = () => (
       }}
     />
     <ModalFormInput
-      label="Event Date"
+      label="Event Start"
       inputProps={{
-        type: "date",
-        name: "date",
-        id: "date",
+        type: "datetime-local",
+        name: "start",
+        id: "start",
+        required: true,
+      }}
+    />
+    <ModalFormInput
+      label="Event End"
+      inputProps={{
+        type: "datetime-local",
+        name: "end",
+        id: "end",
         required: true,
       }}
     />
