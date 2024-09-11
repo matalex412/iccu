@@ -1,7 +1,7 @@
 import { collection, onSnapshot, query } from "firebase/firestore"
 import moment from "moment"
 import React, { type FC, useEffect, useMemo, useState } from "react"
-import { Calendar, type Event, type ViewsProps, momentLocalizer } from "react-big-calendar"
+import { Calendar, type Event, momentLocalizer } from "react-big-calendar"
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import { useMediaQuery } from "react-responsive"
 
