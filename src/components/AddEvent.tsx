@@ -43,6 +43,24 @@ const AddEvent = () => (
         required: true,
       }}
     />
+    <ModalFormInput
+      label="Event Location"
+      inputProps={{
+        type: "text",
+        name: "location",
+        id: "location",
+        placeholder: "e.g. RSM G20",
+      }}
+    />
+    <ModalFormInput
+      label="Event Description"
+      inputProps={{
+        type: "text",
+        name: "description",
+        id: "description",
+        placeholder: "e.g. A weekly bible study",
+      }}
+    />
   </FormModal>
 )
 

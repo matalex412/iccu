@@ -1,5 +1,5 @@
-import { deleteDoc, doc } from "firebase/firestore"
 import React from "react"
+import { deleteDoc, doc } from "firebase/firestore"
 import { FaTrash } from "react-icons/fa"
 
 import { auth, db } from "../firebase/client"
@@ -12,7 +12,7 @@ const CustomEvent = (event: any) => {
   }
 
   return (
-    <div className="flex justify-between p-1">
+    <div className="flex justify-between p-1 cursor-pointer">
       {event.title}
       {auth.currentUser && (
         <button onClick={handleDelete} title="Delete event">

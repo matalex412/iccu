@@ -10,6 +10,8 @@ export const POST: APIRoute = async ({ request }) => {
   const name = data.get("name")
   const start = data.get("start")?.toString()
   const end = data.get("end")?.toString()
+  const location = data.get("location")?.toString()
+  const description = data.get("description")?.toString()
   const repeats = Math.max(parseInt(data.get("repeat")?.toString() ?? ""), 1)
 
   if (!name || !start || !end || !repeats) {
@@ -26,6 +28,8 @@ export const POST: APIRoute = async ({ request }) => {
         title: name,
         start: startDate,
         end: endDate,
+        location,
+        description,
       })
     }
   } catch {

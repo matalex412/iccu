@@ -20,6 +20,7 @@
     "@types/react-big-calendar": "^1.8.9",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.15.1",
+    "date-fns": "^3.6.0",
     "firebase": "^10.13.1",
     "firebase-admin": "^12.4.0",
     "moment": "^2.30.1",
