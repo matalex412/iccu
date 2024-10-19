@@ -45,16 +45,6 @@ const AddProfile = () => (
       }}
     />
     <ModalFormInput
-      label="Verse"
-      inputProps={{
-        type: "text",
-        name: "verse",
-        id: "verse",
-        placeholder: "e.g. John 3:16",
-        required: true,
-      }}
-    />
-    <ModalFormInput
       label="Bio"
       inputProps={{
         type: "text",

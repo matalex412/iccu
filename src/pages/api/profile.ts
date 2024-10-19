@@ -21,11 +21,10 @@ export const POST: APIRoute = async ({ request }) => {
   const name = data.get("name")
   const role = data.get("role")
   const yearCourse = data.get("yearCourse")
-  const verse = data.get("verse")
   const bio = data.get("bio")
   const profilePicture = data.get("profilePicture")
 
-  if (!name || !role || !verse || !bio || !profilePicture) {
+  if (!name || !role || !bio || !profilePicture) {
     return new Response(
       JSON.stringify({
         message: "Missing required fields. Every field is required except year/course.",
@@ -80,7 +79,6 @@ export const POST: APIRoute = async ({ request }) => {
       name,
       role,
       yearCourse,
-      verse,
       bio,
       profilePicture: pictureURL,
       pictureStoragePath: filePath,
