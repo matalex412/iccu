@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets"
+
+interface Props {
+  imagePath: string
+  name: string
+  services: string[]
+  midweek: string[]
+  tube: string
+  website: string
+}
+
+const { imagePath, name, services, midweek, tube, website }: Props = Astro.props
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/churches/*.{jpeg,jpg,png,gif}"
+)
+if (!images[imagePath])
+  throw new Error(
+    `"${imagePath}" does not exist in glob: "src/assets/churches/*.{jpeg,jpg,png,gif}"`
+  )
+---
+
+<div class="text-center text-sm max-w-sm p-7 gap-3 flex flex-col items-center justify-around rounded-xl shadow-md bg-leaf-100 text-leaf-600">
+  <Image src={images[imagePath]()} alt=`${name}` class="w-auto h-52 object-cover mb-3" />
+  <p class="text-xl font-bold md:text-2xl">{name}</p>
+  <p class="font-semibold text-lg">Sunday Services:</p>
+  {services.map((service) => <p>{service}</p>)}
+  {!!midweek.length && <p class="font-semibold text-lg">Midweek:</p>}
+  {midweek.map((service) => <p>{service}</p>)}
+  <p class="font-semibold text-lg">Nearest Tube Station:</p>
+  <p>{tube}</p>
+  <br />
+  <a class="underline hover:text-leaf-900" href={website}>{website}</a>
+</div>
