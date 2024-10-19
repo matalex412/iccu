@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro"
+import EventCard from "../components/EventCard.astro"
+import Section from "../components/Section.astro"
+import ChurchCard from "../components/ChurchCard.astro"
+---
+
+<Layout title="Imperial College Christian Union">
+  <Section>
+    <p class="text-3xl font-semibold p-3">Looking for a church?</p>
+    <div class="p-3">
+      <p>
+        At the Christian Union we know how important it is to be part of a local Christian
+        community. Our belief is that every member of the CU should be part of a church.
+      </p>
+      <br />
+      <p>
+        Below is a list of local Churches that are popular with our CU members. This is by no means
+        an exhaustive list, feel free to look around and find what suits you..
+      </p>
+      <br />
+      <p>
+        If you want to talk to a student who goes to one of these churches, please contact the CU
+        via email or our social media and we’ll happily put you in touch.
+      </p>
+    </div>
+  </Section>
+
+  <Section lightBackground additionalClass="md:items-stretch md:text-sm text-sm flex-wrap">
+    <ChurchCard
+      imagePath="/src/assets/churches/ccm.jpeg"
+      name="Christ Church Mayfair"
+      services={["10:30am", "6pm"]}
+      midweek={["Tuesdays 6pm Student Group"]}
+      tube="Hyde Park Corner (6 minutes)"
+      website="https://christchurchmayfair.org/"
+    />
+    <ChurchCard
+      imagePath="/src/assets/churches/cck.jpeg"
+      name="Christ Church Kensington"
+      services={["11am", "5pm (main student service, cakes and coffee from 16:30, food after)"]}
+      midweek={["Wednesdays 7:15pm Student Groups (with food)"]}
+      tube="Gloucester Road (8 minutes)"
+      website="https://christchurchkensington.com/"
+    />
+    <ChurchCard
+      imagePath="/src/assets/churches/htb.jpeg"
+      name="Holy Trinity Brompton"
+      services={["4:30pm (Onslow Square)", "6:30pm (Onslow Square)"]}
+      midweek={["Tuesdays 7pm Student Night"]}
+      tube="South Kensington (4 minutes)"
+      website="https://www.htb.org/"
+    />
+    <ChurchCard
+      imagePath="/src/assets/churches/standrews.jpeg"
+      name="St Andrew's Chelsea"
+      services={["10:30am (church family service, with monthly church lunch)", "6pm"]}
+      midweek={["Tuesdays and Wednesdays 19:45 Church Growth Groups"]}
+      tube="South Kensington (17 minutes)"
+      website="https://www.standrewschelsea.org/"
+    />
+    <ChurchCard
+      imagePath="/src/assets/churches/kt.jpeg"
+      name="Kensington Temple"
+      services={["9am", "11am", "6:00pm"]}
+      midweek={["Wednesdays 7pm Prayer Meeting"]}
+      tube="Notting Hill Gate (5 minutes)"
+      website="https://www.kt.org/"
+    />
+    <ChurchCard
+      imagePath="/src/assets/churches/sjwrbc.jpeg"
+      name="St John's Wood Road Baptist Church"
+      services={["10:30am"]}
+      midweek={["Wednesdays 7:30pm Prayer Meeting"]}
+      tube="St John's Wood (5 minutes)"
+      website="https://www.sjwrbc.org/"
+    />
+    <ChurchCard
+        imagePath="/src/assets/churches/everynation.jpeg"
+        name="Every Nation"
+        services={["10:30am"]}
+        midweek={["Tuesdays 6:30pm Connect Groups"]}
+        tube="West Kensington (2 minutes)"
+        website="https://everynation.london/west-kensington/"
+    />
+    <ChurchCard
+        imagePath="/src/assets/churches/allsouls.jpeg"
+        name="All Souls Langham Place"
+        services={["9:30am", "11:30am", "5:30pm"]}
+        midweek={[]}
+        tube="Oxford Circus (5 minutes)"
+        website="https://www.allsouls.org/"
+    />
+    <ChurchCard
+        imagePath="/src/assets/churches/ststephens.jpeg"
+        name="St Stephen's Westbourne Park"
+        services={["10:30am"]}
+        midweek={[]}
+        tube="Royal Oak (5 minutes)"
+        website="https://www.ststephens.london/"
+    />
+  </Section>
+</Layout>
